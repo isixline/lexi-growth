@@ -30,15 +30,14 @@ def test_write_subtitles_to_text():
 def test_extract_ass_text():
     # given
     ass_file_path = "tests/test_data/Friends.S01E01.ass"
-    expected_output_file_path = "tests/test_data/Friends.S01E01.ass.txt"
     expected_file_path = "tests/test_data/test_extract_ass_text_expected.txt"
 
     # when
-    extract_ass_text(ass_file_path)
+    output_file_path = extract_ass_text(ass_file_path)
 
     # then
-    compare_files(expected_output_file_path, expected_file_path)
-    os.remove(expected_output_file_path)
+    compare_files(output_file_path, expected_file_path)
+    os.remove(output_file_path)
 
 
 

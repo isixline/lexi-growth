@@ -31,7 +31,7 @@ def process_file(word_count, file_path):
 
 def handle_counte_words_by_frequency(file_path):
     word_count = count_words_from_file(file_path)
-    csv_file_name = file_path + ".csv"
-    process_file(word_count, file_path + ".csv")
+    output_file_path = file_path + ".csv"
+    process_file(word_count, output_file_path)
 
-    return csv_file_name
+    return output_file_path

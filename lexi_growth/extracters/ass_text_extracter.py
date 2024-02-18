@@ -20,4 +20,6 @@ def write_subtitles_to_text(subtitles, output_file_path):
 
 def extract_ass_text(ass_file_path):
     subtitles = extract_subtitles_from_ass(ass_file_path)
-    write_subtitles_to_text(subtitles, ass_file_path + '.txt')
+    output_file_path = ass_file_path + '.txt'
+    write_subtitles_to_text(subtitles, output_file_path)
+    return output_file_path
