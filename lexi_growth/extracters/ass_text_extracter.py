@@ -18,7 +18,7 @@ def write_subtitles_to_text(subtitles, output_file_path):
         for idx, subtitle in enumerate(subtitles, 1):
             file.write(f'{subtitle}\n')
 
-def extract_ass_text(ass_file_path):
+def handle_extract_ass_text(ass_file_path):
     subtitles = extract_subtitles_from_ass(ass_file_path)
     output_file_path = ass_file_path + '.txt'
     write_subtitles_to_text(subtitles, output_file_path)

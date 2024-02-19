@@ -1,5 +1,5 @@
 import os
-from lexi_growth.extracters.ass_text_extracter import extract_subtitles_from_ass, write_subtitles_to_text, extract_ass_text
+from lexi_growth.extracters.ass_text_extracter import extract_subtitles_from_ass, write_subtitles_to_text, handle_extract_ass_text
 from tests.utils.file_compare_util import compare_files
 
 def test_extract_subtitles_from_ass():
@@ -27,13 +27,13 @@ def test_write_subtitles_to_text():
     compare_files(output_file_path, expected_file_path)
     os.remove(output_file_path)
 
-def test_extract_ass_text():
+def test_handle_extract_ass_text():
     # given
     ass_file_path = "tests/test_data/Friends.S01E01.ass"
     expected_file_path = "tests/test_data/test_extract_ass_text_expected.txt"
 
     # when
-    output_file_path = extract_ass_text(ass_file_path)
+    output_file_path = handle_extract_ass_text(ass_file_path)
 
     # then
     compare_files(output_file_path, expected_file_path)
