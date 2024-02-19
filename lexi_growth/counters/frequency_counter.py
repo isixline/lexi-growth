@@ -23,11 +23,11 @@ def count_words_from_file(file_path):
 def process_file(word_count, file_path):
     sorted_result = sorted(word_count.items(), key=lambda x: x[1], reverse=True)
     with open(file_path, mode='w', newline='', encoding='utf-8') as csv_file:
-        fieldnames = ['Word', 'Frequency']
+        fieldnames = ['word', 'frequency']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         for word, count in sorted_result:
-            writer.writerow({'Word': word, 'Frequency': count})
+            writer.writerow({'word': word, 'frequency': count})
 
 def handle_counte_words_by_frequency(file_path):
     word_count = count_words_from_file(file_path)
