@@ -7,11 +7,10 @@ def test_handle_filter_known_word():
     # given
     load_dotenv('tests/.env.test')
     word_list_path = "tests/test_data/word_list.csv"
-    output_path = "tests/test_data/filtered_word_list.csv"
     expected_file_path = "tests/test_data/filtered_word_list_expected.csv"
 
     # when
-    handle_filter_known_word(word_list_path, output_path)
+    output_path = handle_filter_known_word(word_list_path)
 
     # then
     compare_files(output_path, expected_file_path)
