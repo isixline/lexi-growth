@@ -1,6 +1,6 @@
 import os
 from lexi_growth.extracters.ass_text_extracter import extract_subtitles_from_ass, write_subtitles_to_text, handle_extract_ass_text
-from tests.utils.file_compare_util import compare_files
+from tests.test_utils.file_compare_util import compare_files
 
 def test_extract_subtitles_from_ass():
     # given

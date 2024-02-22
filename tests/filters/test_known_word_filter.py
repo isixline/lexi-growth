@@ -1,5 +1,5 @@
 from lexi_growth.filters.known_word_filter import handle_filter_known_word
-from tests.utils.file_compare_util import compare_files
+from tests.test_utils.file_compare_util import compare_files
 import os
 from dotenv import load_dotenv
 

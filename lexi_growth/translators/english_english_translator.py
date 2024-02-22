@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
 
 def get_word_english_definition(word):
     print(f"Getting definition for {word}")
@@ -22,7 +23,7 @@ def apply_translate_for_file(file_path, translate_function):
     
     df['english_definition'] = df['word'].apply(translate_function)
     
-    output_path = file_path.replace('.csv', '_translated.csv')
+    output_path = converte_to_workspace_process_file_path('word_list_english_translated', 'csv')
     df.to_csv(output_path, index=False)
     
     return output_path

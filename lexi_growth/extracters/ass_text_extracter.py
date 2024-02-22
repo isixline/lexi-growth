@@ -1,4 +1,5 @@
 import re
+from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
 
 def extract_subtitles_from_ass(ass_file_path):
     subtitles = []
@@ -20,6 +21,6 @@ def write_subtitles_to_text(subtitles, output_file_path):
 
 def handle_extract_ass_text(ass_file_path):
     subtitles = extract_subtitles_from_ass(ass_file_path)
-    output_file_path = ass_file_path + '.txt'
+    output_file_path = converte_to_workspace_process_file_path("text", "txt")
     write_subtitles_to_text(subtitles, output_file_path)
     return output_file_path

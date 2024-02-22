@@ -1,6 +1,7 @@
 import re
 import csv
 import os
+from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
 
 def count_words_from_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -31,7 +32,7 @@ def process_file(word_count, file_path):
 
 def handle_counte_words_by_frequency(file_path):
     word_count = count_words_from_file(file_path)
-    output_file_path = file_path + ".csv"
+    output_file_path = converte_to_workspace_process_file_path('word_list', 'csv')
     process_file(word_count, output_file_path)
 
     return output_file_path

@@ -1,5 +1,5 @@
 from lexi_growth.counters.frequency_counter import count_words_from_file, handle_counte_words_by_frequency
-from tests.utils.file_compare_util import compare_files
+from tests.test_utils.file_compare_util import compare_files
 import os
 
 def test_count_words_from_file():
