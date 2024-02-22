@@ -30,3 +30,8 @@ to be continued
 
 #### merge words to known-list
 to be continued
+
+## run
+```
+python -m lexi_growth [file-path]
+```

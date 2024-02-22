@@ -10,7 +10,7 @@ def get_word_english_definition(word):
         if response.status_code == 200:
             data = response.json()
             definitions = [definition['definition'] for entry in data for meaning in entry.get('meanings', []) for definition in meaning.get('definitions', [])]
-            return '; '.join(definitions)
+            return '; '.join(definitions[:3])
         else:
             return 'Not found'
     except Exception as e:
