@@ -10,7 +10,16 @@ def handle_filter_known_word(word_list_path):
     # filtered_word_list is in word_list but not in known_list
     filtered_word_list = word_list[~word_list['word'].isin(known_list['word'])]
 
+    # Create a DataFrame with 'word' 'frequency' column from filtered_word_list
+    output_df = pd.DataFrame(filtered_word_list, columns=['word', 'frequency'])
+
+    # Add 'known' column with all values as 0
+    output_df['known'] = 0
+
+    # Reorder columns to have 'known' column as the first column
+    output_df = output_df[['known', 'word', 'frequency']]
+
     output_path = converte_to_workspace_process_file_path('word_list_filtered', 'csv')
-    filtered_word_list.to_csv(output_path, index=False)
+    output_df.to_csv(output_path, index=False)
 
     return output_path
