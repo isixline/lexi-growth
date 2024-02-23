@@ -4,7 +4,6 @@ import os
 
 def test_handle_filter_known_word():
     # given
-    os.environ['K'] = 'value'
     word_list_path = "tests/filters/test_data/word_list.csv"
     expected_file_path = "tests/filters/test_data/filtered_word_list_expected.csv"
 

@@ -1,9 +1,7 @@
 from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
-import os
 
 def test_converte_to_workspace_process_file_path():
     # given
-    os.environ['YOUR_VARIABLE'] = 'value'
     output_file_name = "output"
     output_file_type = "csv"
 
