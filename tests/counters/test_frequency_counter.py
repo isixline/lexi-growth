@@ -4,7 +4,7 @@ import os
 
 def test_count_words_from_file():
     # given 
-    file_path = "tests/test_data/counte_words.txt"
+    file_path = "tests/counters/test_data/counte_words.txt"
 
     # when
     word_count = count_words_from_file(file_path)
@@ -14,8 +14,8 @@ def test_count_words_from_file():
 
 def test_handle_counte_words_by_frequency():
     # given
-    file_path = "tests/test_data/counte_words.txt"
-    expected_file_path = "tests/test_data/counte_words_by_frequency_expected.csv"
+    file_path = "tests/counters/test_data/counte_words.txt"
+    expected_file_path = "tests/counters/test_data/counte_words_by_frequency_expected.csv"
 
     # when
     output_file_path = handle_counte_words_by_frequency(file_path)

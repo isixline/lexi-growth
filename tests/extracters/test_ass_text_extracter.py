@@ -4,7 +4,7 @@ from tests.test_utils.file_compare_util import compare_files
 
 def test_extract_subtitles_from_ass():
     # given
-    ass_file_path = "tests/test_data/Friends.S01E01.ass"
+    ass_file_path = "tests/extracters/test_data/Friends.S01E01.ass"
 
     # when
     subtitles = extract_subtitles_from_ass(ass_file_path)
@@ -17,8 +17,8 @@ def test_extract_subtitles_from_ass():
 def test_write_subtitles_to_text():
     # given
     subtitles = ["subtitle1", "subtitle2"]
-    output_file_path = "tests/test_data/handled.txt"
-    expected_file_path = "tests/test_data/test_write_subtitles_to_text_expected.txt"
+    output_file_path = "tests/extracters/test_data/handled.txt"
+    expected_file_path = "tests/extracters/test_data/test_write_subtitles_to_text_expected.txt"
 
     # when
     write_subtitles_to_text(subtitles, output_file_path)
@@ -29,8 +29,8 @@ def test_write_subtitles_to_text():
 
 def test_handle_extract_ass_text():
     # given
-    ass_file_path = "tests/test_data/Friends.S01E01.ass"
-    expected_file_path = "tests/test_data/test_extract_ass_text_expected.txt"
+    ass_file_path = "tests/extracters/test_data/Friends.S01E01.ass"
+    expected_file_path = "tests/extracters/test_data/test_extract_ass_text_expected.txt"
 
     # when
     output_file_path = handle_extract_ass_text(ass_file_path)

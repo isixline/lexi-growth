@@ -45,8 +45,8 @@ def test_get_word_english_definition_error(mock_dictionaryapi_get_entries_en_err
 
 def test_apply_translate_for_file():
     # given
-    word_list_path = "tests/test_data/word_list.csv"
-    expected_file_path = "tests/test_data/word_list_english_translated_expected.csv"
+    word_list_path = "tests/translators/test_data/word_list.csv"
+    expected_file_path = "tests/translators/test_data/word_list_english_translated_expected.csv"
     translate_function = lambda word: f"{word}_translated"
 
     # when

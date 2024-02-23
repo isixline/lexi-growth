@@ -1,9 +1,9 @@
 from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
-from dotenv import load_dotenv
+import os
 
 def test_converte_to_workspace_process_file_path():
     # given
-    load_dotenv('tests/.env.test')
+    os.environ['YOUR_VARIABLE'] = 'value'
     output_file_name = "output"
     output_file_type = "csv"
 
