@@ -1,6 +1,6 @@
 import sys
 from dotenv import load_dotenv
-from lexi_growth.handlers.file_handler import handle_file
+from lexi_growth.handlers.filter_handler import handle_word_filter
 from lexi_growth.handlers.merge_handler import handle_word_merge_to_known_list
 
 def main():
@@ -19,7 +19,7 @@ def main():
         filter_index = args.index("--filter")
         if len(args) > filter_index + 1:
             file_path = args[filter_index + 1]
-            handle_file(file_path)
+            handle_word_filter(file_path)
         else:
             print("need file path!")    
 

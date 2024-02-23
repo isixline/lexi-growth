@@ -11,7 +11,7 @@ def export_result_file(file_path):
     copy_file(file_path, result_file_path)
     return result_file_path
 
-def handle_file(file_path):
+def handle_word_filter(file_path):
     processing_functions = [
         handle_extract_file_text,
         handle_counte_words_by_frequency,
