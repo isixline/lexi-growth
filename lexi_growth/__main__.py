@@ -1,15 +1,27 @@
 import sys
 from dotenv import load_dotenv
 from lexi_growth.handlers.file_handler import handle_file
+from lexi_growth.handlers.merge_handler import handle_word_merge_to_known_list
 
 def main():
     load_dotenv()
 
-    file_path = sys.argv[1]
+    args = sys.argv
 
-    processed_file_path = handle_file(file_path)
-    print(f"Processed file: {processed_file_path}")
-    
+    if len(args) < 2:
+        print("need args!")
+        sys.exit(1)
+
+    if "--merge" in args:
+        handle_word_merge_to_known_list()
+
+    if "--filter" in args:
+        filter_index = args.index("--filter")
+        if len(args) > filter_index + 1:
+            file_path = args[filter_index + 1]
+            handle_file(file_path)
+        else:
+            print("need file path!")    
 
 if __name__ == "__main__":
     main()
