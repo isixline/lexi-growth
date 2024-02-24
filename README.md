@@ -28,10 +28,13 @@ set the known-list file path in .env file
 #### quick build known-list
 to be continued
 
-#### merge words to known-list
-to be continued
 
 ## run
+#### filter words
 ```
-python -m lexi_growth [file-path]
+python -m lexi_growth --filter [file-path]
+```
+#### merge words to known-list
+```
+python -m lexi_growth --merge 
 ```
