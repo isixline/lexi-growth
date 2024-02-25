@@ -59,4 +59,5 @@ venv/
 logs/
 .env
 .idea
+.vscode
 temp/
