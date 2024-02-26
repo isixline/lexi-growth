@@ -23,10 +23,9 @@ def apply_translate_for_file(file_path, translate_function):
     
     df['english_definition'] = df['word'].apply(translate_function)
     
-    output_path = converte_to_workspace_process_file_path('word_list_english_translated', 'csv')
-    df.to_csv(output_path, index=False)
+    df.to_csv(file_path, index=False)
     
-    return output_path
+    return file_path
 
     
 def handle_translate_english_english(file_path):

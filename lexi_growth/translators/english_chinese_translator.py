@@ -14,13 +14,13 @@ def get_word_chinese_translation(word):
 def apply_translate_for_file(file_path, translate_function):
     df = pd.read_csv(file_path)
     
+    # add new column chinese_translation
     df['chinese_translation'] = df['word'].apply(translate_function)
-    
-    output_path = converte_to_workspace_process_file_path('word_list_chinese_translated', 'csv')
 
-    df.to_csv(output_path, index=False)
+    # output to file_path
+    df.to_csv(file_path, index=False)
 
-    return output_path
+    return file_path
 
 def handle_translate_english_chinese(file_path):
     return apply_translate_for_file(file_path, get_word_chinese_translation)
