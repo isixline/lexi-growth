@@ -3,7 +3,7 @@ from lexi_growth.counters.frequency_counter import handle_counte_words_by_freque
 from lexi_growth.filters.known_word_filter import handle_filter_known_word
 from lexi_growth.translators.english_english_translator import handle_translate_english_english
 from lexi_growth.translators.english_chinese_translator import handle_translate_english_chinese
-from lexi_growth.utils.file_util import copy_file
+from lexi_growth.utils.file_util import copy_file, converte_to_workspace_process_file_path
 import os
 
 def export_result_file(file_path):
@@ -25,11 +25,11 @@ def handle_word_filter(**kwargs):
     file_path = handle_counte_words_by_frequency(file_path)
     file_path = handle_filter_known_word(file_path)
 
+    file_path = copy_file(file_path, converte_to_workspace_process_file_path("word_list_handled", "csv"))
     max_words = int(kwargs.get("max_words"))
     for func in handle_functions:
         if handles and func.get("handles") and func.get("handles") not in handles:
             continue
         file_path = func.get("function")(file_path, max_words)
-
-    result_file_path = export_result_file(file_path)
-    return result_file_path
+    
+    export_result_file(file_path)
