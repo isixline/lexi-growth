@@ -12,17 +12,23 @@ def export_result_file(file_path):
     copy_file(file_path, result_file_path)
     return result_file_path
 
-def handle_word_filter(file_path):
+def handle_word_filter(**kwargs):
+    file_path = kwargs.get("file_path")
+    handles = kwargs.get("handles").split(",") if kwargs.get("handles") else None
+    print(f"handles: {handles}")
+
     processing_functions = [
-        handle_extract_file_text,
-        handle_counte_words_by_frequency,
-        handle_filter_known_word,
-        handle_translate_english_english,
-        handle_translate_english_chinese
+        {"function": handle_extract_file_text},
+        {"function": handle_counte_words_by_frequency},
+        {"function": handle_filter_known_word},
+        {"function": handle_translate_english_english, "handles": "english_definition"},
+        {"function": handle_translate_english_chinese, "handles": "chinese_translation"},
     ]
 
     for func in processing_functions:
-        file_path = func(file_path)
+        if handles and func.get("handles") and func.get("handles") not in handles:
+            continue
+        file_path = func.get("function")(file_path)
 
     result_file_path = export_result_file(file_path)
     return result_file_path

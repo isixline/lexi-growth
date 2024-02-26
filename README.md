@@ -32,8 +32,11 @@ to be continued
 ## run
 #### filter words
 ```
-python -m lexi_growth --filter [file-path]
+python -m lexi_growth --filter file_path=file_path handles=english_definition,chinese_translation
 ```
+file_path: required
+handles: optional, default is all handles
+
 #### merge words to known-list
 ```
 python -m lexi_growth --merge 
