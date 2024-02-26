@@ -18,9 +18,11 @@ def get_word_english_definition(word):
         print(f"An error occurred: {e}")
         return 'Error'
     
-def apply_translate_for_file(file_path, translate_function):
+def apply_translate_for_file(file_path, max_words, translate_function):
     df = pd.read_csv(file_path)
     
+    if max_words:
+        df = df.head(max_words)
     df['english_definition'] = df['word'].apply(translate_function)
     
     df.to_csv(file_path, index=False)
@@ -28,5 +30,5 @@ def apply_translate_for_file(file_path, translate_function):
     return file_path
 
     
-def handle_translate_english_english(file_path):
-    return apply_translate_for_file(file_path, get_word_english_definition)
+def handle_translate_english_english(file_path, max_words):
+    return apply_translate_for_file(file_path, max_words, get_word_english_definition)

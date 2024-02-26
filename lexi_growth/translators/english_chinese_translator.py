@@ -11,9 +11,11 @@ def get_word_chinese_translation(word):
 
     return translated_word
 
-def apply_translate_for_file(file_path, translate_function):
+def apply_translate_for_file(file_path, max_words, translate_function):
     df = pd.read_csv(file_path)
     
+    if max_words:
+        df = df.head(max_words)
     # add new column chinese_translation
     df['chinese_translation'] = df['word'].apply(translate_function)
 
@@ -22,7 +24,7 @@ def apply_translate_for_file(file_path, translate_function):
 
     return file_path
 
-def handle_translate_english_chinese(file_path):
-    return apply_translate_for_file(file_path, get_word_chinese_translation)
+def handle_translate_english_chinese(file_path, max_words):
+    return apply_translate_for_file(file_path, max_words, get_word_chinese_translation)
 
 

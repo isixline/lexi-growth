@@ -14,21 +14,22 @@ def export_result_file(file_path):
 
 def handle_word_filter(**kwargs):
     file_path = kwargs.get("file_path")
-    handles = kwargs.get("handles").split(",") if kwargs.get("handles") else None
-    print(f"handles: {handles}")
+    handles = kwargs.get("handles").split(",") if kwargs.get("handles") else []
 
-    processing_functions = [
-        {"function": handle_extract_file_text},
-        {"function": handle_counte_words_by_frequency},
-        {"function": handle_filter_known_word},
-        {"function": handle_translate_english_english, "handles": "english_definition"},
-        {"function": handle_translate_english_chinese, "handles": "chinese_translation"},
+    handle_functions = [
+        {"function": handle_translate_english_english, "handle": "english_definition"},
+        {"function": handle_translate_english_chinese, "handle": "chinese_translation"},
     ]
 
-    for func in processing_functions:
+    file_path = handle_extract_file_text(file_path, kwargs.get("index"))
+    file_path = handle_counte_words_by_frequency(file_path)
+    file_path = handle_filter_known_word(file_path)
+
+    max_words = int(kwargs.get("max_words"))
+    for func in handle_functions:
         if handles and func.get("handles") and func.get("handles") not in handles:
             continue
-        file_path = func.get("function")(file_path)
+        file_path = func.get("function")(file_path, max_words)
 
     result_file_path = export_result_file(file_path)
     return result_file_path
