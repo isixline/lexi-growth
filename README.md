@@ -2,8 +2,8 @@
 
 ## venv
 ```
-python -m venv myenv
-source venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 ```
 
 ## setup
@@ -32,11 +32,14 @@ to be continued
 ## run
 #### filter words
 ```
-python -m lexi_growth --filter file_path=file_path index=1 max_words=20 handles=english_definition,chinese_translation
+python -m lexi_growth --filter file_path=file_path index=1 max_words=20
 ```
 file_path: required
+
 index: optional, only used for epub file, values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
 max_words: optional, values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
 handles: optional, values: english_definition, chinese_translation
 
 #### merge words to known-list
