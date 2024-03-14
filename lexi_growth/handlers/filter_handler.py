@@ -30,6 +30,10 @@ def handle_word_filter(**kwargs):
     for func in handle_functions:
         if handles and func.get("handles") and func.get("handles") not in handles:
             continue
-        file_path = func.get("function")(file_path, max_words)
-    
+        try:
+            file_path = func.get("function")(file_path, max_words)
+        except: 
+            print(f"Error in {func.get('function')}")
+            pass
+
     export_result_file(file_path)
