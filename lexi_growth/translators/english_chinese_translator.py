@@ -1,6 +1,6 @@
 from googletrans import Translator
 import pandas as pd
-from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
+from dict_toolkit.dict_csv_handler import DictCSVHandler
 
 def get_word_chinese_translation(word):
     translator = Translator()
@@ -10,6 +10,12 @@ def get_word_chinese_translation(word):
     translated_word = translation.text
 
     return translated_word
+
+def get_word_chinese_translation_by_dict(word):
+    dict_csv_handler = DictCSVHandler()
+    lexical_item = dict_csv_handler.query(word)
+    print(f"Getting translation for {word}")
+    return lexical_item.translation if lexical_item else 'Not found'
 
 def apply_translate_for_file(file_path, max_words, translate_function):
     df = pd.read_csv(file_path)
@@ -25,6 +31,6 @@ def apply_translate_for_file(file_path, max_words, translate_function):
     return file_path
 
 def handle_translate_english_chinese(file_path, max_words):
-    return apply_translate_for_file(file_path, max_words, get_word_chinese_translation)
+    return apply_translate_for_file(file_path, max_words, get_word_chinese_translation_by_dict)
 
 

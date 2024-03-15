@@ -1,6 +1,6 @@
 import pandas as pd
 import requests
-from lexi_growth.utils.file_util import converte_to_workspace_process_file_path
+from dict_toolkit.dict_csv_handler import DictCSVHandler
 
 def get_word_english_definition(word):
     print(f"Getting definition for {word}")
@@ -18,6 +18,12 @@ def get_word_english_definition(word):
         print(f"An error occurred: {e}")
         return 'Error'
     
+def get_word_english_definition_by_dict(word):
+    dict_csv_handler = DictCSVHandler()
+    lexical_item = dict_csv_handler.query(word)
+    print(f"Getting definition for {word}")
+    return lexical_item.definition if lexical_item else 'Not found'
+    
 def apply_translate_for_file(file_path, max_words, translate_function):
     df = pd.read_csv(file_path)
     
@@ -31,4 +37,4 @@ def apply_translate_for_file(file_path, max_words, translate_function):
 
     
 def handle_translate_english_english(file_path, max_words):
-    return apply_translate_for_file(file_path, max_words, get_word_english_definition)
+    return apply_translate_for_file(file_path, max_words, get_word_english_definition_by_dict)
