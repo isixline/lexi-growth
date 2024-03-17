@@ -1,6 +1,6 @@
 import pandas as pd
 import requests
-from dict_toolkit.dict_csv_handler import DictCSVHandler
+from dict_toolkit.extensions.query_agent import auto_query
 
 def get_word_english_definition(word):
     print(f"Getting definition for {word}")
@@ -19,8 +19,7 @@ def get_word_english_definition(word):
         return 'Error'
     
 def get_word_english_definition_by_dict(word):
-    dict_csv_handler = DictCSVHandler()
-    lexical_item = dict_csv_handler.query(word)
+    lexical_item = auto_query(word)
     print(f"Getting definition for {word}")
     return lexical_item.definition if lexical_item else 'Not found'
     

@@ -6,4 +6,4 @@ requests_mock==1.11.0
 googletrans==4.0.0-rc1
 ebooklib==0.18
 BeautifulSoup4==4.12.3
-dict-toolkit==0.0.2
+dict-toolkit==0.0.5
