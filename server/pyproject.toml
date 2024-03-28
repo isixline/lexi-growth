@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "lexi-growth"
+version = "0.0.1"
+description = ""
+authors = []
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.1"
+pandas = "^2.2.1"
+flask = "^3.0.2"
+dict-toolkit = "^0.0.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
