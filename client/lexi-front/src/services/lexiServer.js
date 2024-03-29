@@ -8,6 +8,14 @@ const lexiServerApi = {
     );
     return response.data;
   },
+
+  async merge(word) {
+    const response = await axios.post(
+      '/api/merge-to-known',
+      { word },
+    );
+    return response.data;
+  },
 };
 
 export default lexiServerApi;

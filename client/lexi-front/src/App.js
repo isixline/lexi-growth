@@ -1,10 +1,10 @@
 import React from 'react';
+import './App.css'
 import WordList from './pages/WordList';
 
 function App() {
     return (
-        <div>
-            <h1>Lexi</h1>
+        <div className="centered-container">
             <WordList />
         </div>
     );
