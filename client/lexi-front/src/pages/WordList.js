@@ -27,6 +27,15 @@ const WordList = () => {
     setData(updatedData);
   }
 
+  const formatContent = (content) => {
+    return content.split('\\n').map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+  }
+
   const renderItem = (item) => (
     <List.Item>
       <Card size="small"
@@ -34,7 +43,10 @@ const WordList = () => {
         extra={<Button type="link" onClick={() => handleMergeClick(item)}> known! </Button>}
         style={{ width: "100%", display: item.known ? 'none' : 'block' }}
       >
-        <p>{item.definition}</p>
+        <p>
+          {formatContent(item.definition)}
+        </p>
+      {}
       </Card>
     </List.Item>
   );
