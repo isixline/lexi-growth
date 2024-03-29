@@ -45,12 +45,13 @@ const WordList = () => {
       <Input.TextArea
         placeholder="Enter some text..."
         value={inputValue}
-        autoSize={{ minRows: 3 }}
+        autoSize={{ minRows: 3, maxRows: 5}}
         onChange={handleInputChange}
       />
       <Button type="primary" onClick={handleButtonClick}>
         Submit
       </Button>
+      <h3>total:{data.length}</h3>
       <List
         itemLayout="horizontal"
         dataSource={data}
