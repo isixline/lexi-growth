@@ -1,11 +1,13 @@
-import { Button } from 'antd';
+import React from 'react';
+import WordList from './pages/WordList';
 
 function App() {
-  return (
-    <div>
-      <Button type="primary">主要按钮</Button>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Lexi</h1>
+            <WordList />
+        </div>
+    );
 }
 
 export default App;
