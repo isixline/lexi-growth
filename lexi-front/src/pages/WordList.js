@@ -12,6 +12,7 @@ const WordList = () => {
 
   const handleButtonClick = async () => {
     const list = await lexiServerApi.filter(inputValue);
+    list.sort((a, b) => b.count - a.count);
     setData(list);
   };
 
