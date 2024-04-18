@@ -40,7 +40,7 @@ const WordList = () => {
     <List.Item>
       <Card size="small"
         title={item.word}
-        extra={<Button type="link" onClick={() => handleMergeClick(item)}> known! </Button>}
+        extra={<div><span>{item.count}</span><Button type="link" onClick={() => handleMergeClick(item)}> known! </Button></div>}
         style={{ width: "100%", display: item.known ? 'none' : 'block' }}
       >
         <p>
