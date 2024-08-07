@@ -69,7 +69,7 @@ const WordList = () => {
 
   return (
     <div className='word-list-container'>
-      <h1>Word List</h1>
+      <h1>LexiGrowth</h1>
 
       <div className='word-revert'>
         <Input 
