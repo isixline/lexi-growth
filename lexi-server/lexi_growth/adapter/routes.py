@@ -1,5 +1,5 @@
 from flask import Flask, request
-from lexi_growth.application.lexi_flow_handler import handle_lexi_flow, handle_lexi_merge_to_known
+from lexi_growth.application.lexi_flow_handler import handle_lexi_flow, handle_lexi_merge_to_known, handle_lexi_remove_word
 
 app = Flask(__name__)
 
@@ -26,4 +26,11 @@ def filter():
 def merge_to_known():
     word = request.json["word"]
     handle_lexi_merge_to_known(word)
+    return "OK"
+
+# remove word
+@app.route("/remove-word", methods=["POST"])
+def remove_word():
+    word = request.json["word"]
+    handle_lexi_remove_word(word)
     return "OK"

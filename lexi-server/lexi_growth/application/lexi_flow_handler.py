@@ -4,7 +4,7 @@ from lexi_growth.extension.word_known_filter import KnownWordFilter
 from lexi_growth.extension.word_definition_filler import WordDefinitionFiller
 from lexi_growth.extension.word_translation_filler import WordTranslationFiller
 from lexi_growth.core.word_filler import CombinedWordFiller
-from lexi_growth.application.known_list_context import get_known_list, merge_to_known_list
+from lexi_growth.application.known_list_context import get_known_list, merge_to_known_list, remove_from_known_list
 
 def handle_lexi_flow(text):
     word_counter = WordFrequencyCounter()
@@ -14,3 +14,6 @@ def handle_lexi_flow(text):
 
 def handle_lexi_merge_to_known(word):
     merge_to_known_list(word)
+
+def handle_lexi_remove_word(word):
+    remove_from_known_list(word)
