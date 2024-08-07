@@ -7,19 +7,22 @@ const WordList = () => {
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState('hello lexi-growth!');
   const [revertedWord, setRevertedWord] = useState('');
+  const [loadingData, setLoadingData] = useState(false);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleRevertChange = (e) => { 
+  const handleRevertChange = (e) => {
     setRevertedWord(e.target.value);
   }
 
   const handleButtonClick = async () => {
+    setLoadingData(true);
     const list = await lexiServerApi.filter(inputValue);
     list.sort((a, b) => b.count - a.count);
     setData(list);
+    setLoadingData(false);
   };
 
   const handleRevertClick = async () => {
@@ -62,7 +65,7 @@ const WordList = () => {
         <p>
           {formatContent(item.definition)}
         </p>
-      {}
+        { }
       </Card>
     </List.Item>
   );
@@ -72,7 +75,7 @@ const WordList = () => {
       <h1>LexiGrowth</h1>
 
       <div className='word-revert'>
-        <Input 
+        <Input
           value={revertedWord}
           onChange={handleRevertChange}
         />
@@ -84,19 +87,28 @@ const WordList = () => {
       <Input.TextArea
         placeholder="Enter some text..."
         value={inputValue}
-        autoSize={{ minRows: 3, maxRows: 5}}
+        autoSize={{ minRows: 3, maxRows: 5 }}
         onChange={handleInputChange}
       />
       <Button type="primary" onClick={handleButtonClick}>
         Filter
       </Button>
 
-      <h3>total:{data.length}</h3>
-      <List
-        itemLayout="horizontal"
-        dataSource={data}
-        renderItem={renderItem}
-      />
+      {
+        loadingData 
+          ? (<h3>Loading...</h3>)
+          : (
+            <>
+            <h3>total:{data.length}</h3>
+            <List
+              itemLayout="horizontal"
+              dataSource={data}
+              renderItem={renderItem}
+            />
+            </>
+          ) 
+      }
+
     </div>
   );
 };
