@@ -6,9 +6,15 @@ import lexiServerApi from '../services/lexiServer';
 const WordList = () => {
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState('hello lexi-growth!');
+  const [revertedWord, setRevertedWord] = useState('');
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
+
+  const handleRevertChange = (e) => { 
+    setRevertedWord(e.target.value);
+  }
 
   const handleButtonClick = async () => {
     const list = await lexiServerApi.filter(inputValue);
@@ -16,6 +22,15 @@ const WordList = () => {
     setData(list);
   };
 
+  const handleRevertClick = async () => {
+    if (!revertedWord) {
+      return;
+    }
+
+    await lexiServerApi.revert(revertedWord);
+
+    setRevertedWord('');
+  }
 
   const handleMergeClick = async (item) => {
     await lexiServerApi.merge(item.word);
@@ -55,6 +70,17 @@ const WordList = () => {
   return (
     <div className='word-list-container'>
       <h1>Word List</h1>
+
+      <div className='word-revert'>
+        <Input 
+          value={revertedWord}
+          onChange={handleRevertChange}
+        />
+        <Button danger onClick={handleRevertClick}>
+          Revert
+        </Button>
+      </div>
+
       <Input.TextArea
         placeholder="Enter some text..."
         value={inputValue}
@@ -62,8 +88,9 @@ const WordList = () => {
         onChange={handleInputChange}
       />
       <Button type="primary" onClick={handleButtonClick}>
-        Submit
+        Filter
       </Button>
+
       <h3>total:{data.length}</h3>
       <List
         itemLayout="horizontal"

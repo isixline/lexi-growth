@@ -16,6 +16,14 @@ const lexiServerApi = {
     );
     return response.data;
   },
+
+  async revert(word) {
+    const response = await axios.post(
+      '/api/revert-word',
+      { word },
+    );
+    return response.data;
+  },
 };
 
 export default lexiServerApi;
