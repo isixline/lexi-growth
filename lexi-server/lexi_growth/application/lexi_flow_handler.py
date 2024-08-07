@@ -15,5 +15,5 @@ def handle_lexi_flow(text):
 def handle_lexi_merge_to_known(word):
     merge_to_known_list(word)
 
-def handle_lexi_remove_word(word):
+def handle_lexi_revert_word(word):
     remove_from_known_list(word)
