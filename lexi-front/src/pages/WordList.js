@@ -29,10 +29,9 @@ const WordList = () => {
   };
 
   const sortData = (data, sortType) => {
-    if (!data || !sortType)
+    if (!sortType) {
       return;
-
-    console.log('resortData by', sortType);
+    }
     data.sort((a, b) => {
       if (sortType === 'count') {
         return b.count - a.count;
@@ -41,12 +40,12 @@ const WordList = () => {
       }
       return 0;
     });
-    setData(data);
   }
 
   const handleButtonClick = async () => {
     setLoadingData(true);
     const list = await lexiServerApi.filter(inputValue);
+    setData(list);
     sortData(list, sortType);
     setLoadingData(false);
   };
@@ -96,7 +95,7 @@ const WordList = () => {
         style={{ width: "100%", display: item.known ? 'none' : 'block' }}
       >
         <p>
-          🌟 {item.difficulty}
+          {item.difficulty && `🌟 ${item.difficulty}`}
           <br />
           {formatContent(item.definition)}
         </p>
