@@ -1,5 +1,6 @@
 from flask import Flask, request
 from lexi_growth.application.lexi_flow_handler import handle_lexi_flow, handle_lexi_merge_to_known, handle_lexi_revert_word
+from lexi_growth.application.auto_text_extractor import extract_text
 
 app = Flask(__name__)
 
@@ -7,11 +8,11 @@ app = Flask(__name__)
 def index():
     return "Hello, Flask!"
 
-
 @app.route("/filter", methods=["POST"])
 def filter():
     text = request.json["text"]
-    word_items = handle_lexi_flow(text)
+    extractd_text = extract_text(text)
+    word_items = handle_lexi_flow(extractd_text)
     return [
         {
             "word": word_item.word,

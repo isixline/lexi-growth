@@ -13,3 +13,8 @@ poetry install
 python run.py
 ```
 
+## Add a new dependency
+```shell
+poetry add <dependency>
+```
+
