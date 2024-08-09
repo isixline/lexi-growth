@@ -24,6 +24,14 @@ const lexiServerApi = {
     );
     return response.data;
   },
+
+  async extractText(resourceLocator) {
+    const response = await axios.post(
+      '/api/extract-text',
+      { resourceLocator },
+    );
+    return response.data['text'];
+  },
 };
 
 export default lexiServerApi;

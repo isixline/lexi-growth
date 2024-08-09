@@ -8,6 +8,7 @@ const WordList = () => {
   const [inputValue, setInputValue] = useState('hello lexi-growth!');
   const [revertedWord, setRevertedWord] = useState('');
   const [loadingData, setLoadingData] = useState(false);
+  const [resourceLocator, setResourceLocator] = useState('');
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -15,6 +16,10 @@ const WordList = () => {
 
   const handleRevertChange = (e) => {
     setRevertedWord(e.target.value);
+  }
+
+  const handleResourceLocatorChange = (e) => {
+    setResourceLocator(e.target.value);
   }
 
   const handleButtonClick = async () => {
@@ -46,6 +51,13 @@ const WordList = () => {
     setData(updatedData);
   }
 
+  const handleExtractClick = async () => {
+    setInputValue('Extracting...');
+    const text = await lexiServerApi.extractText(resourceLocator);
+    setInputValue(text);
+    setData([]);
+  }
+
   const formatContent = (content) => {
     return content.split('\\n').map((line, index) => (
       <span key={index}>
@@ -74,13 +86,22 @@ const WordList = () => {
     <div className='word-list-container'>
       <h1>LexiGrowth</h1>
 
-      <div className='word-revert'>
+      <div className='util-container'>
         <Input
           value={revertedWord}
           onChange={handleRevertChange}
         />
         <Button danger onClick={handleRevertClick}>
           Revert
+        </Button>
+        
+      
+        <Input
+          value={resourceLocator}
+          onChange={handleResourceLocatorChange}
+        />
+        <Button onClick={handleExtractClick}>
+          Extract
         </Button>
       </div>
 
