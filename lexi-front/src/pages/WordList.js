@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './WordList.css';
-import { Input, Button, List, Card } from 'antd';
+import { Input, Button, List, Card, Select } from 'antd';
 import lexiServerApi from '../services/lexiServer';
 
 const WordList = () => {
@@ -9,6 +9,7 @@ const WordList = () => {
   const [revertedWord, setRevertedWord] = useState('');
   const [loadingData, setLoadingData] = useState(false);
   const [resourceLocator, setResourceLocator] = useState('');
+  const [sortType, setSortType] = useState('');
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -22,11 +23,31 @@ const WordList = () => {
     setResourceLocator(e.target.value);
   }
 
+  const handleSortChange = (value) => {
+    setSortType(value);
+    sortData(data, value);
+  };
+
+  const sortData = (data, sortType) => {
+    if (!data || !sortType)
+      return;
+
+    console.log('resortData by', sortType);
+    data.sort((a, b) => {
+      if (sortType === 'count') {
+        return b.count - a.count;
+      } else if (sortType === 'difficulty') {
+        return a.difficulty - b.difficulty;
+      }
+      return 0;
+    });
+    setData(data);
+  }
+
   const handleButtonClick = async () => {
     setLoadingData(true);
     const list = await lexiServerApi.filter(inputValue);
-    list.sort((a, b) => b.count - a.count);
-    setData(list);
+    sortData(list, sortType);
     setLoadingData(false);
   };
 
@@ -75,6 +96,8 @@ const WordList = () => {
         style={{ width: "100%", display: item.known ? 'none' : 'block' }}
       >
         <p>
+          🌟 {item.difficulty}
+          <br />
           {formatContent(item.definition)}
         </p>
         { }
@@ -121,12 +144,22 @@ const WordList = () => {
           : (
             <>
             <h3>total:{data.length}</h3>
+
+            <Select
+              value={sortType}
+              onChange={handleSortChange}
+              style={{ width: 120 }}
+            >
+              <Select.Option value="count">Count ⬇️</Select.Option>
+              <Select.Option value="difficulty">Difficulty ⬆️</Select.Option>
+            </Select>
+
             <List
               itemLayout="horizontal"
-              dataSource={data}
+              dataSource={data} 
               renderItem={renderItem}
             />
-            </>
+            </> 
           ) 
       }
 
