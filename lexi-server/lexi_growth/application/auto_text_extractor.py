@@ -1,7 +1,7 @@
 import re
 from lexi_growth.utils.txtractor.youtube_subtitles_extractor import extract_youtube_subtitles
  
-def extract_text(text):
+def auto_extract_text(text):
     # 正则表达式来匹配YouTube视频URL
     youtube_pattern = r'(https?://)?(www\.)?(youtube\.com)'
 
