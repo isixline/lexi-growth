@@ -2,7 +2,7 @@ import subprocess
 import os
 import glob
 
-def extract_youtube_subtitles(video_url, language_code='en'):
+def extract_youtube_subtitles_by_language_code(video_url, language_code='en'):
     try:
         # 临时文件名
         base_file_name = "temp_subtitle"
@@ -19,20 +19,18 @@ def extract_youtube_subtitles(video_url, language_code='en'):
         
         # 执行命令
         subprocess.run(command, check=True)
-
+        
         subtitle_file_pattern = f"{base_file_name}*.{language_code}.*"
         subtitle_files = glob.glob(subtitle_file_pattern)
-        
+
         if not subtitle_files:
-            print("未找到字幕文件。")
+            print(f"未找到{language_code}字幕文件。")
             return None
         
-        subtitle_file = subtitle_files[0]  # 获取第一个匹配的文件
-        
-        
-        # 读取字幕文件
-        with open(subtitle_file, 'r', encoding='utf-8') as file:
-            subtitles = file.read()
+        subtitle_file = subtitle_files[0]
+    
+        with open(subtitle_file, 'r') as f:
+            subtitles = f.read()
         
         # 删除临时文件
         os.remove(subtitle_file)
@@ -48,6 +46,13 @@ def extract_youtube_subtitles(video_url, language_code='en'):
     except Exception as e:
         print(f"发生错误: {e}")
         return None
+
+def extract_youtube_subtitles(video_url):
+    language_codes=['en', 'en-US']
+    for language_code in language_codes:
+        subtitles = extract_youtube_subtitles_by_language_code(video_url, language_code)
+        if subtitles is not None:
+            return subtitles
 
 # 示例调用
 if __name__ == "__main__":
