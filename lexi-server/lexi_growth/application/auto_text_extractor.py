@@ -8,5 +8,6 @@ def auto_extract_text(text):
     extractd_text = text
     if re.match(youtube_pattern, text):
         extractd_text = extract_youtube_subtitles(text)
+        print('Extracted text from YouTube subtitles.')
     
     return extractd_text
