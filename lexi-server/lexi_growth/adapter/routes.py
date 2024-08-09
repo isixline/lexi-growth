@@ -19,6 +19,7 @@ def filter():
             "count": word_item.count,
             "definition": word_item.definition,
             "translation": word_item.translation,
+            "difficulty": word_item.difficulty
         }
         for word_item in word_items
     ]

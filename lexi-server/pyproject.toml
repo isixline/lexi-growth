@@ -12,6 +12,7 @@ pandas = "^2.2.1"
 flask = "^3.0.2"
 dict-toolkit = "^0.0.5"
 yt-dlp = "^2024.8.6"
+nltk = "^3.8.1"
 
 
 [build-system]

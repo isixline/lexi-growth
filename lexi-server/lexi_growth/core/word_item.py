@@ -5,6 +5,7 @@ class WordItem():
         self.count = count
         self.definition = definition
         self.translation = translation
+        self.difficulty = None
 
     def __str__(self):
-        return f'{self.word} ({self.count}) - {self.definition} - {self.translation}'
+        return f'{self.word} ({self.count}) - {self.definition} - {self.translation} - {self.difficulty}'
