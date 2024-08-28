@@ -70,8 +70,6 @@ const WordsList = ({ words }) => {
 
     return (
         <div className='words-list-container'>
-            <h3>total:{showedWords.length}</h3>
-
             <Select
                 value={sortType}
                 onChange={handleSortChange}

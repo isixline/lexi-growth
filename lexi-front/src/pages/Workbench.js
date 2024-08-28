@@ -3,12 +3,13 @@ import './Workbench.css';
 import { Input, Button } from 'antd';
 import lexiServerApi from '../services/lexiServer';
 import WordsList from './WordsList';
+import HighlightText from './HighlightText';
 
 const Workbench = () => {
-  const [data, setData] = useState([]);
+  const [words, setWords] = useState([]);
   const [inputValue, setInputValue] = useState('hello lexi-growth!');
   const [revertedWord, setRevertedWord] = useState('');
-  const [loadingData, setLoadingData] = useState(false);
+  const [loadingWords, setLoadingWords] = useState(false);
   const [resourceLocator, setResourceLocator] = useState('');
 
   const handleInputChange = (e) => {
@@ -23,11 +24,11 @@ const Workbench = () => {
     setResourceLocator(e.target.value);
   }
 
-  const handleButtonClick = async () => {
-    setLoadingData(true);
+  const handleFilterClick = async () => {
+    setLoadingWords(true);
     const list = await lexiServerApi.filter(inputValue);
-    setData(list);
-    setLoadingData(false);
+    setWords(list);
+    setLoadingWords(false);
   };
 
   const handleRevertClick = async () => {
@@ -44,9 +45,9 @@ const Workbench = () => {
     setInputValue('Extracting...');
     const text = await lexiServerApi.extractText(resourceLocator);
     setInputValue(text);
-    setData([]);
+    setWords([]);
   }
-  
+
   return (
     <div className='workbench-container'>
       <h1>LexiGrowth</h1>
@@ -59,8 +60,8 @@ const Workbench = () => {
         <Button danger onClick={handleRevertClick}>
           Revert
         </Button>
-        
-      
+
+
         <Input
           value={resourceLocator}
           onChange={handleResourceLocatorChange}
@@ -76,18 +77,20 @@ const Workbench = () => {
         autoSize={{ minRows: 3, maxRows: 5 }}
         onChange={handleInputChange}
       />
-      
-      <Button type="primary" onClick={handleButtonClick}>
+      <Button type="primary" onClick={handleFilterClick}>
         Filter
       </Button>
 
       {
-        loadingData 
+        loadingWords
           ? (<h3>Loading...</h3>)
           : (
-            // <div/>
-            <WordsList words={data} />
-          ) 
+            <>
+              <h3>total:{words.length}</h3>
+              <HighlightText text={inputValue} words={words} />
+              <WordsList words={words} />
+            </>
+          )
       }
 
     </div>
