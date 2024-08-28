@@ -10,7 +10,7 @@ const WordsList = ({ words }) => {
     useEffect(() => {
         const indexedWords = words.map((word, index) => {
             return { ...word, index };
-          });
+        });
         sortWords(indexedWords, sortType);
         setShowedWords(indexedWords);
     }, [words, sortType]);
@@ -71,15 +71,16 @@ const WordsList = ({ words }) => {
     return (
         <div className='words-list-container'>
             <Select
+                className='sort-select'
                 value={sortType}
                 onChange={handleSortChange}
-                style={{ width: 120 }}
             >
-                 <Select.Option value="order">Order ⬆️</Select.Option>
+                <Select.Option value="order">Order ⬆️</Select.Option>
                 <Select.Option value="count">Count ⬇️</Select.Option>
             </Select>
 
             <List
+                className='words-list-area'
                 itemLayout="horizontal"
                 dataSource={showedWords}
                 renderItem={renderItem}
