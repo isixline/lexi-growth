@@ -87,20 +87,23 @@ const Workbench = () => {
           : (
             <>
               <h3>total:{words.length}</h3>
-              <Collapse
-                style={{ width: '100%' }}
-                defaultActiveKey={['1']}
-                items={[
-                  { key: '1', label: 'Highlight', children: <HighlightText text={inputValue} words={words} /> },
-                ]}
-              />
+              <div className='words-container'>
+                <Collapse
+                  style={{ width: '100%' }}
+                  defaultActiveKey={['1']}
+                  items={[
+                    { key: '1', label: 'Highlight', children: <HighlightText text={inputValue} words={words} /> },
+                  ]}
+                />
 
-              <Collapse
-                style={{ width: '100%' }}
-                items={[
-                  { key: '1', label: 'WordsList', children: <WordsList words={words} /> },
-                ]}
-              />
+                <Collapse
+                  style={{ width: '100%' }}
+                  defaultActiveKey={['1']}
+                  items={[
+                    { key: '1', label: 'WordsList', children: <WordsList words={words} /> },
+                  ]}
+                />
+              </div>
             </>
           )
       }
