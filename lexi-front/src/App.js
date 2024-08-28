@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css'
-import WordList from './pages/WordList';
+import Workbench from './pages/Workbench';
 
 function App() {
     return (
         <div className="centered-container">
-            <WordList />
+            <Workbench />
         </div>
     );
 }

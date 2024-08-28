@@ -1,15 +1,8 @@
-.word-list-container {
+.words-list-container {
     width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-}
-
-.util-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
     gap: 10px;
 }
